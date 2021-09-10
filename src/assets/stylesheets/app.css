@@ -604,7 +604,7 @@ a,
 
 /* Zhihu - Author */
 .content > div > div > div > div:first-child {
-  margin: 1.8em auto;
+  margin: 1em;
   position: relative;
   height: 48px;
 }
@@ -643,6 +643,15 @@ a,
 .text-muted {
     font-size: 14px;
     line-height: 1.6em;
+}
+
+/* Zhihu - How to roast correctly（瞎扯：如何正确地吐嘈） */
+.content > div:last-child > div:not(last-child):after {
+    content: "";
+    background: #E6E6E6;
+    display: block;
+    height: 1px;
+    margin-top: 2em;
 }
 
 /* --------------------- ACROLLBAR ---------------------- */
