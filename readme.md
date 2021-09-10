@@ -5,7 +5,7 @@
 当前支持的 RSS 如下：
 
 - [知乎日报 from feedburner](http://feeds.feedburner.com/zhihu-daily)
-
+![知乎日报 from feedburner](asserts/zhihu-daily.png)
 # yarr
 
 **yarr** (yet another rss reader) is a web-based feed aggregator which can be used both
