@@ -5,6 +5,7 @@
 body {
   font-size: 15px !important;
   overscroll-behavior: none;
+  font-family: "阿里巴巴普惠体 2.0", sans-serif;
 }
 
 /* bootstrap customizations */
@@ -346,7 +347,13 @@ select.form-control:not([multiple]):not([size]) {
 
 .content {
   overflow-wrap: break-word;
-  line-height: 1.5;
+  line-height: 1.8em;
+}
+
+.content > * {
+  max-width: 680px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .content img, .content video {
@@ -392,8 +399,7 @@ select.form-control:not([multiple]):not([size]) {
 }
 
 .content a {
-  color: inherit;
-  text-decoration: underline;
+  color: #0080d4;
 }
 
 .content blockquote {
@@ -406,6 +412,8 @@ select.form-control:not([multiple]):not([size]) {
 }
 .content h2 {
   font-size: 1.5rem;
+  margin: 2em 0;
+  line-height: 1.4;
 }
 .content h3 {
   font-size: 1.17rem;
@@ -588,4 +596,68 @@ a,
   .toolbar-search {
     padding: .5rem;
   }
+}
+
+
+/* ---------------------- ZHIHU ----------------------- */
+/* for feed: http://feeds.feedburner.com/zhihu-daily */
+
+/* Zhihu - Author */
+.content > div > div > div > div:first-child {
+  margin: 1.8em auto;
+  position: relative;
+  height: 48px;
+}
+/* Zhihu - Author - Avatar */
+.content > div > div > div > div:first-child > img {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  top: 4px;
+}
+/* Zhihu - Author - Name */
+.content > div > div > div > div:first-child > span:first-of-type {
+  position: absolute;
+  left: 56px;
+}
+/* Zhihu - Author - description */
+.content > div > div > div > div:first-child > span:nth-of-type(2) {
+  font-size: 14px;
+  color: #6c757d;
+  position: absolute;
+  left: 56px;
+  top: 22px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(100% - 114px);
+}
+/* Zhihu - Author - original */
+.content > div > div > div > div:first-child > a {
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  top: 10px;
+}
+/* Zhihu - time */
+.text-muted {
+    font-size: 14px;
+    line-height: 1.6em;
+}
+
+/* --------------------- ACROLLBAR ---------------------- */
+
+body ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+body ::-webkit-scrollbar-track {
+    background-color: unset;
+    border: solid 2px transparent;
+}
+body ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px 10px #DADCDB;
+    border: solid 2px transparent;
 }

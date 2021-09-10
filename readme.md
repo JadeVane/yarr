@@ -1,3 +1,11 @@
+## 修改部分
+
+在原有代码基础上，针对国内网站优化显示样式
+
+当前支持的 RSS 如下：
+
+- [知乎日报 from feedburner](http://feeds.feedburner.com/zhihu-daily)
+
 # yarr
 
 **yarr** (yet another rss reader) is a web-based feed aggregator which can be used both
