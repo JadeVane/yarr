@@ -607,8 +607,6 @@ a,
   margin: 1em 0;
   position: relative;
   height: 48px;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
-  padding-bottom: calc(1rem + 46px);
 }
 /* Zhihu - Author - Avatar */
 .content > div > div > div > div:first-child > img {
