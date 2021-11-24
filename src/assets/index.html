@@ -57,6 +57,18 @@
 
                     <div class="dropdown-divider"></div>
 
+                    <header class="dropdown-header">Theme</header>
+                    <div class="row text-center m-0">
+                        <button class="btn btn-link col-4 px-0 rounded-0"
+                                :class="'theme-'+t"
+                                @click.stop="theme.name = t"
+                                v-for="t in ['light', 'sepia', 'night']">
+                            <span class="icon" v-if="theme.name == t">{% inline "check.svg" %}</span>
+                        </button>
+                    </div>
+
+                    <div class="dropdown-divider"></div>
+
                     <header class="dropdown-header">Auto Refresh</header>
                     <div class="row text-center m-0">
                         <button class="dropdown-item col-4 px-0" :class="{active: !refreshRate}" @click.stop="refreshRate = 0">0</button>
@@ -117,6 +129,7 @@
                 <div v-for="folder in foldersWithFeeds">
                     <label class="selectgroup mt-1"
                            :class="{'d-none': filterSelected
+                                              && !(current.folder.id == folder.id || current.feed.folder_id == folder.id)
                                               && !filteredFolderStats[folder.id]
                                               && (!itemSelectedDetails || feedsById[itemSelectedDetails.feed_id].folder_id != folder.id)}">
                         <input type="radio" name="feed" :value="'folder:'+folder.id" v-model="feedSelected">
@@ -133,6 +146,7 @@
                     <div v-show="!folder.id || folder.is_expanded" class="mt-1" :class="{'pl-3': folder.id}">
                         <label class="selectgroup"
                               :class="{'d-none': filterSelected
+                                                 && !(current.feed.id == feed.id)
                                                  && !filteredFeedStats[feed.id]
                                                  && (!itemSelectedDetails || itemSelectedDetails.feed_id != feed.id)}"
                                v-for="feed in folder.feeds">
@@ -177,11 +191,16 @@
                         title="Mark All Read">
                     <span class="icon">{% inline "check.svg" %}</span>
                 </button>
+
+
+                <button class="btn btn-link toolbar-item px-2 ml-2" v-if="!current.type" disabled>
+                    <span class="icon">{% inline "more-horizontal.svg" %}</span>
+                </button>
                 <dropdown class="settings-dropdown"
                           toggle-class="btn btn-link toolbar-item px-2 ml-2"
                           drop="right"
                           title="Feed Settings"
-                          v-if="!filterSelected && current.type == 'feed'">
+                          v-if="current.type == 'feed'">
                     <template v-slot:button>
                         <span class="icon">{% inline "more-horizontal.svg" %}</span>
                     </template>
@@ -226,7 +245,7 @@
                           toggle-class="btn btn-link toolbar-item px-2 ml-2"
                           title="Folder Settings"
                           drop="right"
-                          v-if="!filterSelected && current.type == 'folder'">
+                          v-if="current.type == 'folder'">
                     <template v-slot:button>
                         <span class="icon">{% inline "more-horizontal.svg" %}</span>
                     </template>
@@ -285,14 +304,6 @@
                     <template v-slot:button>
                         <span class="icon">{% inline "sliders.svg" %}</span>
                     </template>
-                    <div class="row text-center m-0">
-                        <button class="btn btn-link col-4 px-0 rounded-0"
-                                :class="'theme-'+t"
-                                @click.stop="theme.name = t"
-                                v-for="t in ['light', 'sepia', 'night']">
-                            <span class="icon" v-if="theme.name == t">{% inline "check.svg" %}</span>
-                        </button>
-                    </div>
 
                     <button class="dropdown-item" :class="{active: !theme.font}" @click.stop="theme.font = ''">sans-serif</button>
                     <button class="dropdown-item font-serif" :class="{active: theme.font == 'serif'}" @click.stop="theme.font = 'serif'">serif</button>
@@ -350,7 +361,7 @@
                     </label>
                     <select class="form-control" id="feed-folder" name="folder_id" ref="newFeedFolder">
                         <option value="">---</option>
-                        <option :value="folder.id" v-for="folder in folders">{{ folder.title }}</option>
+                        <option :value="folder.id" v-for="folder in folders" :selected="folder.id === current.feed.folder_id || folder.id === current.folder.id">{{ folder.title }}</option>
                     </select>
                     <div class="mt-4" v-if="feedNewChoice.length">
                         <p class="mb-2">
